@@ -1,0 +1,38 @@
+@theme {
+  --color-blue-50: oklch(95% 0.05 265.5);
+  --color-blue-100: oklch(85% 0.1 265.5);
+  --color-blue-200: oklch(75% 0.15 265.5);
+  --color-blue-300: oklch(68% 0.19 265.5);
+  --color-blue-400: oklch(63% 0.21 265.5);
+  --color-blue-500: oklch(58.3% 0.234 265.5);
+  --color-blue-600: oklch(50% 0.21 265.5);
+  --color-blue-700: oklch(42% 0.18 265.5);
+  --color-blue-800: oklch(34% 0.15 265.5);
+  --color-blue-900: oklch(26% 0.12 265.5);
+  --color-gray: #5e5d67;
+  --color-white: #ffffff;
+  --color-black: #1b1b23;
+  --color-bg: #e9f0fe;
+
+  --font-base: 'Roboto', system-ui, sans-serif;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+
+  --leading-base: 1.5;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
