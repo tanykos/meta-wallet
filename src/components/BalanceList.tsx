@@ -1,15 +1,12 @@
 import type { BalanceInfo } from '../types/wallet';
 import { BalanceCard } from './BalanceCard';
 
-interface BalanceDisplayProps {
+interface BalanceListProps {
   ethBalance: BalanceInfo;
   usdtBalance: BalanceInfo;
 }
 
-export function BalanceDisplay({
-  ethBalance,
-  usdtBalance,
-}: BalanceDisplayProps) {
+export function BalanceList({ ethBalance, usdtBalance }: BalanceListProps) {
   return (
     <div className="mt-4 flex w-fit max-w-full flex-col gap-4">
       <BalanceCard label="ETH" balanceInfo={ethBalance} />

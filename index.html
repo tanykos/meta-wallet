@@ -8,11 +8,23 @@
       name="description"
       content="Landing page with MetaMask wallet integration"
     />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:;"
-    />
     <title>Meta-Wallet</title>
+    <link
+      rel="preload"
+      href="/src/assets/fonts/DMSans-VariableFont_opsz,wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+      href="/src/assets/images/cubes.webp"
+      imagesrcset="/src/assets/images/cubes-sm.webp 600w, /src/assets/images/cubes.webp 1207w"
+      imagesizes="(max-width: 640px) 100vw, 980px"
+    />
   </head>
   <body>
     <div id="root"></div>

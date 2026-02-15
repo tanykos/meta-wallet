@@ -4,14 +4,10 @@
 @import './theme.css';
 
 body {
-  font-family: var(--font-base);
+  @apply font-sans;
   background: var(--color-bg);
   color: var(--color-black);
-}
-
-h1 {
-  font-weight: 600;
-  font-size: var(--text-xl);
+  font-optical-sizing: none;
 }
 
 h2,

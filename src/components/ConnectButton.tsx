@@ -1,5 +1,5 @@
+import { XIcon } from '../assets/icons/XIcon';
 import { truncateAddress } from '../lib/utils';
-import { XIcon } from './icons/XIcon';
 
 interface ConnectButtonProps {
   isConnected: boolean;
