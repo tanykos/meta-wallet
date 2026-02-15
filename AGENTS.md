@@ -31,7 +31,7 @@ overengineering.
 | Bundler      | Vite 7 (`base: '/meta-wallet/'`)                |
 | Styling      | Tailwind CSS 4 (via `@tailwindcss/vite` plugin) |
 | Web3         | ethers.js 6                                     |
-| Fonts        | Self-hosted Roboto (woff2, 400/500/700)         |
+| Fonts        | Self-hosted DM Sans variable (woff2, 100–900)   |
 | Deployment   | GitHub Pages via `gh-pages` package             |
 
 ## Architecture Principles
@@ -70,31 +70,50 @@ meta-wallet/
 ├── public/              # Static assets served as-is (favicon.svg, robots.txt)
 ├── src/
 │   ├── components/      # Presentational React components (UI only)
-│   │   ├── ConnectButton.tsx
-│   │   └── BalanceDisplay.tsx
+│   │   ├── BalanceCard.tsx       # Individual balance card (ETH / USDT)
+│   │   ├── BalanceList.tsx       # Renders list of BalanceCard components
+│   │   ├── ConnectButton.tsx     # Wallet connect/disconnect UI with copy address
+│   │   ├── IconButton.tsx        # Reusable icon button with tooltip
+│   │   ├── MainSection/          # Main landing section (layout + visuals)
+│   │   │   ├── MainSection.tsx
+│   │   │   └── MainSection.module.css  # CSS Modules for animations & background
+│   │   ├── NetworkWarning.tsx    # Unsupported network warning banner
+│   │   ├── OfflineBanner.tsx     # No internet connection banner
+│   │   ├── Tooltip.tsx           # Reusable tooltip component
+│   │   └── WalletPanel.tsx       # Wallet logic compositor (hooks → components)
 │   ├── hooks/           # Custom React hooks (Web3 / business logic)
-│   │   ├── useWallet.ts
-│   │   └── useBalance.ts
+│   │   ├── useBalance.ts
+│   │   ├── useCopyToClipboard.ts
+│   │   ├── useNetworkStatus.ts
+│   │   ├── useTokenBalance.ts
+│   │   └── useWallet.ts
 │   ├── lib/             # Constants, config, pure utilities
-│   │   └── constants.ts
+│   │   ├── constants.ts
+│   │   └── utils.ts
 │   ├── types/           # Shared TypeScript interfaces
 │   │   └── wallet.ts
 │   ├── assets/
-│   │   └── fonts/       # Self-hosted Roboto font files (.woff2)
+│   │   ├── fonts/       # Self-hosted DM Sans variable font (.woff2)
+│   │   ├── icons/       # SVG icon components (CopyIcon, XIcon)
+│   │   └── images/      # Optimized images (.webp, responsive variants)
 │   ├── styles/
 │   │   ├── global.css   # Tailwind import, font & theme imports, base element styles
-│   │   ├── theme.css    # Design tokens (@theme): colors, spacing, typography, radii, shadows
-│   │   └── fonts.css    # @font-face declarations for Roboto
-│   ├── App.tsx          # Root component — composes hooks + components
+│   │   ├── theme.css    # Design tokens (@theme): colors, typography
+│   │   └── fonts.css    # @font-face declarations for DM Sans
+│   ├── App.tsx          # Root component — renders MainSection in <main>
 │   └── main.tsx         # Entry point — renders <App /> into #root
-├── index.html           # HTML shell (entry point for Vite)
-├── vite.config.ts       # Vite config — React plugin, Tailwind plugin, base path
+├── index.html           # HTML shell (entry point for Vite, preload hints)
+├── vite.config.ts       # Vite config — React plugin, Tailwind plugin, base path, @ alias
+├── tailwind.config.js   # Tailwind CSS config
 ├── tsconfig.json        # Root TS config
 ├── tsconfig.app.json    # App-specific TS config (strict, bundler resolution, react-jsx)
 ├── tsconfig.node.json   # Node-side TS config (for vite.config.ts)
 ├── eslint.config.js     # ESLint flat config
 ├── .prettierrc          # Prettier config
-└── .lintstagedrc.json   # Lint-staged config (runs on pre-commit via Husky)
+├── .prettierignore      # Prettier ignore patterns
+├── .lintstagedrc.json   # Lint-staged config (runs on pre-commit via Husky)
+├── .env                 # Environment variables
+└── .env.example         # Environment variables template
 ```
 
 Do not mix responsibilities between folders.
@@ -163,6 +182,7 @@ AI-generated code must:
 - Custom CSS variables: `--color-*`, `--font-*`, `--text-*`, `--spacing-*`, `--radius-*`, `--shadow`.
 - Base element styles (body, h1–h6, p) are set in `src/styles/global.css`.
 - When adding new design tokens, add them to `theme.css` under the `@theme` block.
+- **CSS Modules** (`.module.css`) are used for component-scoped styles (e.g., animations).
 
 ### Formatting (Prettier)
 
@@ -195,6 +215,8 @@ AI-generated code must:
 - **Deployment target**: GitHub Pages — the `dist/` directory is published via the
   `gh-pages` package. The `dist/` folder is git-ignored.
 - **No routing library** is currently installed — the app is a single-page landing.
+- **Fonts**: DM Sans is a variable font (optical size + weight axes). `font-optical-sizing: none`
+  is applied globally for consistent rendering.
 - **Web3 integration**: `ethers` v6 is available for MetaMask / Ethereum wallet
   interactions. Follow the ethers v6 API (e.g., `BrowserProvider`, `JsonRpcSigner`).
 
