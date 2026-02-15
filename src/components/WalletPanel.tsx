@@ -27,7 +27,7 @@ export function WalletPanel() {
   const usdtBalance = useTokenBalance(USDT_ADDRESS, address, activeProvider);
 
   return (
-    <div className="flex flex-col items-center pt-4">
+    <div className="flex flex-col items-center pt-6">
       {!isOnline && <OfflineBanner />}
       <ConnectButton
         isConnected={isConnected}
