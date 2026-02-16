@@ -20,6 +20,14 @@ Landing page with MetaMask wallet integration — connect your wallet, view ETH 
 - **Vite 7** (bundler)
 - **Tailwind CSS 4** (styling)
 - **ethers.js 6** (Web3)
+- **DM Sans** variable font (self-hosted)
+
+### AI Development Tools
+
+- **GitHub Copilot** — code completion, refactoring, and code review
+- **AI-assisted workflow** — boilerplate generation, type improvements, hook structure suggestions, edge-case analysis, code reviews, refactoring proposals
+
+See [AGENTS.md](AGENTS.md) for details on AI workflow and conventions.
 
 ## Getting Started
 
